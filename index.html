@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FingerPrint Analytics • Rekap Record Karyawan</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <div class="header">
+      <div class="header-title">
+        <h1><i class="fas fa-fingerprint"></i> FINGERPRINT RECAP</h1>
+        <p>Rekapitulasi Jumlah Fingerprint per Karyawan</p>
+      </div>
+      <div class="header-stats">
+        <div class="stat-item">
+          <span class="stat-label">Total Karyawan</span>
+          <span class="stat-value" id="totalKaryawan">0</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="upload-section">
+      <div class="upload-form">
+        <div class="form-group">
+          <label><i class="fas fa-calendar-alt"></i> Pilih Bulan</label>
+          <input type="month" id="bulan" value="2026-01" class="form-control">
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-file-upload"></i> File .dat .txt</label>
+          <input type="file" id="fileDat" accept=".dat,.txt" class="form-control">
+        </div>
+        <button class="btn-upload" onclick="processFile()">
+          <i class="fas fa-upload"></i> Proses
+        </button>
+      </div>
+
+    </div>
+
+    <div class="karyawan-section">
+      <div class="section-header">
+        <h3><i class="fas fa-users"></i> DAFTAR KARYAWAN</h3>
+        <button class="btn-tambah" onclick="tambahKaryawan()">
+          <i class="fas fa-plus"></i> Tambah
+        </button>
+      </div>
+      <div class="karyawan-grid" id="karyawanList"></div>
+    </div>
+
+    <div class="result-section" id="resultSection" style="display: none;">
+      <div class="section-header">
+        <h3><i class="fas fa-chart-bar"></i> REKAP FINGERPRINT</h3>
+        <div class="result-actions">
+          <button class="btn-expand" onclick="expandAll()">
+            <i class="fas fa-expand-arrows-alt"></i> Expand All
+          </button>
+        </div>
+      </div>
+
+      <div class="bulan-navigation" id="bulanNavigation"></div>
+      <div id="rekapContainer"></div>
+    </div>
+  </div>
+
+  <div id="modalKaryawan" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-user-plus"></i> TAMBAH KARYAWAN</h3>
+        <span class="close" onclick="tutupModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Kode Karyawan</label>
+          <input type="number" id="kodeKaryawan" placeholder="Contoh: 1" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Nama Karyawan</label>
+          <input type="text" id="namaKaryawan" placeholder="Contoh: Budi" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-simpan" onclick="simpanKaryawan()">
+          <i class="fas fa-save"></i> Simpan
+        </button>
+        <button class="btn-batal" onclick="tutupModal()">
+          <i class="fas fa-times"></i> Batal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
